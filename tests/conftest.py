@@ -10,7 +10,8 @@ from app.observability.tracker import MetricsTracker
 
 @pytest.fixture
 def seeded_conn():
-    conn = sqlite3.connect(":memory:")
+    # check_same_thread=False: FastAPI's TestClient runs sync endpoints in a worker thread
+    conn = sqlite3.connect(":memory:", check_same_thread=False)
     seed_database(conn)
     yield conn
     conn.close()
