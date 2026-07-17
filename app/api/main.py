@@ -73,7 +73,8 @@ def create_app(
     def analyze(body: AnalyzeRequest) -> AnalyzeResponse:
         state = orchestrator.run(request_id=str(uuid.uuid4()), period_days=body.period_days)
         if state.status != "reported":
-            raise HTTPException(status_code=502, detail=list(state.errors) or ["pipeline failed"])
+            # error details stay in the metrics log; clients get a generic message
+            raise HTTPException(status_code=502, detail="Pipeline failed to produce a report; see /metrics")
         return AnalyzeResponse(
             request_id=state.request_id,
             status=state.status,
