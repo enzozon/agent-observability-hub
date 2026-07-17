@@ -1,6 +1,6 @@
 # Agent Observability Hub
 
-![build](https://img.shields.io/badge/build-passing-brightgreen) ![coverage](https://img.shields.io/badge/coverage-94%25-brightgreen) ![python](https://img.shields.io/badge/python-3.11%2B-blue) ![tests](https://img.shields.io/badge/tests-69%20passed-brightgreen)
+[![CI](https://github.com/enzozon/agent-observability-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/enzozon/agent-observability-hub/actions/workflows/ci.yml) ![coverage](https://img.shields.io/badge/coverage-94%25-brightgreen) ![python](https://img.shields.io/badge/python-3.11%2B-blue) ![tests](https://img.shields.io/badge/tests-69%20passed-brightgreen)
 
 Sistema multi-agente em Python que analisa custos de frota de caminhões e demonstra práticas de **engenharia de agentes de IA em produção**: output estruturado, guardrails, observabilidade e avaliação sistemática — tudo testável sem gastar um centavo de API.
 
@@ -132,4 +132,5 @@ tests/               # 69 testes (pytest, LLM sempre mockado)
 - **Sem autenticação** — a API é aberta; produção exige auth (API key/JWT) antes do rate limit.
 - **Eval harness determinístico** — valida coerência da pipeline, não qualidade de texto do LLM real; próximo passo natural é um LLM-as-judge para o Redator.
 - **Detecção de injection por blocklist** — simples e auditável, mas incompleta; um classificador dedicado seria mais robusto.
-- CI real (GitHub Actions) para transformar o badge de build em verdade executável.
+
+CI: GitHub Actions roda a suite completa (Python 3.11 e 3.13), exige cobertura ≥ 80% e executa o eval harness a cada push/PR (`.github/workflows/ci.yml`).
